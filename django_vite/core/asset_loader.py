@@ -241,7 +241,7 @@ class DjangoViteAppClient:
         Returns:
             str -- Full URL to the asset.
         """
-        static_url_base = urljoin(settings.STATIC_URL, self.static_url_prefix)
+        static_url_base = urljoin(settings.STATIC_URL if getattr(settings, 'DJANGO_VITE_USE_STATIC_URL', True) else '', self.static_url_prefix)
         if not static_url_base.endswith("/"):
             static_url_base += "/"
 
